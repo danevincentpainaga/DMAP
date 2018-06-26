@@ -26,15 +26,20 @@ class Residents extends CI_Controller {
 	}
 	public function index()
 	{
-		$this->load->model("user_model");
-		$data['userdata'] = $this->user_model->getUser();
-		$this->load->view('residents', $data);
+		$this->load->model("residents_model");
+		$data['residents'] = $this->residents_model->getResidents();
+		$this->load->view('residents', $data );
+		// echo json_encode($data);
 	}
 	
 	public function addResidents()
 	{
-		$this->load->model("user_model");
-		$data['userdata'] = $this->user_model->getUser();
-		$this->load->view('add_residents', $data);
+		$this->load->view('add_residents');
+	}
+
+	public function res(){
+		$this->load->model('residents_model');
+		$q = $this->residents_model->add();
+		print_r($q);
 	}
 }

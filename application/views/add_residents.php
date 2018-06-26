@@ -4,9 +4,31 @@
 	<title></title>
 	<link type="text/css" rel="stylesheet" href="<?php echo base_url() ?>public/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>public/components-font-awesome/css/font-awesome.min.css">
-
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>public/css/mainStyle.css">
 </head>
 <body>
+<nav class="navbar navbar-expand-sm " style="height: 30px; background-color: #f2f2f2; ">
+  <!-- Brand -->
+  <!-- <a class="navbar-brand" href="#">Logo</a> -->
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        &nbsp;DMAP
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#" style="color:blue;">
+        	<i class="fa fa-home"></i>&nbsp;Visit Website
+        </a>
+        <a class="dropdown-item" href="#" style="color:blue;">
+        	<i class="fa fa-sign-out"></i>&nbsp;Logout
+        </a>
+      </div>
+    </li>
+  </ul>
+</nav>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -27,7 +49,7 @@
 				      	<img src="<?php echo base_url() ?>public/images/maps.png" style="width: 20px;" >&nbsp;Residential Mapping
 				      </a>
 				    </li>
-				    <li class="nav-item dropdown">
+				    <li class="nav-item dropdown border-active">
 				      <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" >
 				      	<img src="<?php echo base_url() ?>public/images/network.png" style="width: 20px;" >
 				      	&nbsp;Manage residents
@@ -37,7 +59,7 @@
 				        <a class="dropdown-item" href="<?php echo base_url() ?>/index.php/residents/addResidents">Add Residents</a>
 				    </li>
 				    <li class="nav-item">
-				    	<a class="nav-link" data-toggle="tab" href="<?php echo base_url() ?>index.php/residents">
+				    	<a class="nav-link" href="<?php echo base_url() ?>index.php/Issuances">
 				    		<img src="<?php echo base_url() ?>public/images/diploma.png" style="width: 20px;" >
 				    		&nbsp;Form Issuances
 				    	</a>
@@ -63,44 +85,44 @@
 					  	<h5>Household Head</h5>
 					  	<div class="row" style="margin-top: .7em;">
 						  	<div class="col-md-4">
-						  		<input type="text" class="form-control form-control-sm" name="" placeholder="firtsname">
+						  		<input type="text" class="form-control form-control-sm" name="" id="h_firstname" placeholder="firtsname">
 						  	</div>
 						  	<div class="col-md-4">
-						  		<input type="text" class="form-control form-control-sm" name="" placeholder="lastname">
+						  		<input type="text" class="form-control form-control-sm" name="" id="h_lastname" placeholder="lastname">
 						  	</div>
 						  	<div class="col-md-4">
-						  		<input type="text" class="form-control form-control-sm" name="" placeholder="Middle Name">
+						  		<input type="text" class="form-control form-control-sm" name="" id="h_middlename" placeholder="Middle Name">
 						  	</div>
 						</div>
 						<br />
 						<div class="row">
 						  	<div class="col-md-4">
-						  		<input type="text" class="form-control form-control-sm" name="" placeholder="Maiden">
+						  		<input type="text" class="form-control form-control-sm" name="" id="h_maiden" placeholder="Maiden">
 						  	</div>
 						  	<div class="col-md-4">
-						  		<select class="form-control form-control-sm">
+						  		<select class="form-control form-control-sm" id="h_qualifier">
 						  			<option value="">Select Qualifier</option>
 						  			<option value="jr">Jr</option>
 						  			<option value="sr">Sr</option>
 						  		</select>
 						  	</div>
 						  	<div class="col-md-4">
-						  		<input type="text" class="form-control form-control-sm" name="" placeholder="Place of Birth">
+						  		<input type="text" class="form-control form-control-sm" name="" id="h_placeofbirth" placeholder="Place of Birth">
 						  	</div>
 						</div>
 						<br />
 						<div class="row">
 						  	<div class="col-md-4">
-						  		<input type="text" class="form-control form-control-sm" name="" placeholder="Date of Birth">
+						  		<input type="text" class="form-control form-control-sm" name="" id="h_dateofbirth" placeholder="Date of Birth">
 						  	</div>
 						  	<div class="col-md-4">
-						  		<select class="form-control form-control-sm">
+						  		<select class="form-control form-control-sm" id="h_sex">
 						  			<option value="male">Male</option>
 						  			<option value="female">Female</option>
 						  		</select>
 						  	</div>
 						  	<div class="col-md-4">
-						  		<select class="form-control form-control-sm">
+						  		<select class="form-control form-control-sm" id="h_civilstatus">
 						  			<option value="single">Single</option>
 						  			<option value="married">Married</option>
 						  		</select>
@@ -109,13 +131,13 @@
 						<br />
 						<div class="row">
 						  	<div class="col-md-4">
-						  		<input type="text" class="form-control form-control-sm" name="" placeholder="Citizen-Ship">
+						  		<input type="text" class="form-control form-control-sm" name="" id="h_citizenship" placeholder="Citizen-Ship">
 						  	</div>
 						  	<div class="col-md-4">
-								<input type="text" class="form-control form-control-sm" name="" placeholder="Occupation">
+								<input type="text" class="form-control form-control-sm" name="" id="h_occupation" placeholder="Occupation">
 						  	</div>
 						  	<div class="col-md-4">
-								<input type="text" class="form-control form-control-sm" name="" placeholder="Educational Attainment">
+								<input type="text" class="form-control form-control-sm" name="" id="h_educational_attainment" placeholder="Educational Attainment">
 						  	</div>
 						</div>
 					  </div>
@@ -128,10 +150,10 @@
 						  		Related to Household Head
 						  	</div>
 						  	<div class="col-md-3">
-						  		<button class="btn btn-success btn-sm" id="add-relation">
+						  		<button class="btn btn-success btn-sm" id="add-relation" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12)">
 						  			<i class="fa fa-plus"></i>&nbsp;Add Relation
 						  		</button>
-						  		<button class="btn btn-info btn-sm" id="save" style="width: 110px;">
+						  		<button class="btn btn-info btn-sm" id="save" style="width: 110px;box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12)">
 						  			<i class="fa fa-save"></i>&nbsp;Save
 						  		</button>
 						  	</div>
@@ -161,7 +183,7 @@
 						      <tbody>
 						        <tr>
 						          <td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="lastname"></td>
-						          <td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="firtsname"></td>
+						          <td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="firstname"></td>
 						          <td style="min-width: 250px;" ><input type="text" class="form-control form-control-sm" name="" id="middlename"></td>
 						          <td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="maiden"></td>
 						          <td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="relation"></td>
@@ -182,8 +204,10 @@
 						          <td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="citizenship"></td>
 						          <td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="occupation"></td>
 						          <td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="educational_attainment"></td>
-						          <td style="min-width: 100px;">
-						          	<button class="btn btn-danger btn-sm" id="remove">Remove</button>
+						          <td style="min-width: 50px; max-width: 50px;">
+						          	<button class="btn btn-danger btn-sm" id="remove">
+						          		<i class="fa fa-remove"></i>
+						          	</button>
 						          </td>
 						        </tr>
 						      </tbody>
@@ -203,7 +227,7 @@
 	var rs ={
 	 residents: '<tr>'+
 		          '<td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="lastname"></td>'+
-		          '<td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="firtsname"></td>'+
+		          '<td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="firstname"></td>'+
 		          '<td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="middlename"></td>'+
 		          '<td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="maiden"></td>'+
 		          '<td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="relation"></td>'+
@@ -225,7 +249,7 @@
 		          '<td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="occupation"></td>'+
 		          '<td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="educational_attainment"></td>'+
 		          '<td style="min-width: 100px;">'+
-		          	'<button class="btn btn-danger btn-sm" id="remove" >Remove</button>'+
+		          	'<button class="btn btn-danger btn-sm" id="remove" ><i class="fa fa-remove"></i></button>'+
 		          '</td>'+
 		        '</tr>',
 	};
@@ -235,20 +259,39 @@
 	var remove = $('.table tbody');
 	var save = $('#save');
 	var tr = $('#residents-table tr:last');
+	
 	add.on('click', function(){
 		console.log('triggered');
 		tr.after(rs.residents);
 	});
+
 	remove.on('click', '#remove', function(){
 		$(this).closest('tr').remove();
 	});
+
 	save.on('click', function(){
-		var arr = [];
+		
+		var householdHead = {
+			lastname: $('#h_lastname').val(),
+			firstname: $('#h_firstname').val(),
+			middlename: $('#h_middlename').val(),
+			maiden: $('#h_maiden').val(),
+			qualifier: $('#h_qualifier').val(),
+			placeofbirth: $('#h_placeofbirth').val(),
+			dateofbirth: $('#h_dateofbirth').val(),
+			sex: $('#h_sex').val(),
+			citizenship: $('#h_citizenship').val(),
+			civilstatus: $('#h_civilstatus').val(),
+			occupation: $('#h_occupation').val(),
+			educational_attainment: $('#h_educational_attainment').val(),
+			rel: [],
+		}; 
+
 		$('tr').each(function(val, i){
 			if(val > 0){
 				var data = {
 					lastname: $(this).find('#lastname').val(),
-					firtsname: $(this).find('#firtsname').val(),
+					firstname: $(this).find('#firstname').val(),
 					middlename: $(this).find('#middlename').val(),
 					maiden: $(this).find('#maiden').val(),
 					relation: $(this).find('#relation').val(),
@@ -260,10 +303,22 @@
 					occupation: $(this).find('#occupation').val(),
 					educational_attainment: $(this).find('#educational_attainment').val(),
 				}
-				arr.push(data);
+				householdHead.rel.push(data);
 			}
 		});
-		console.log(arr);
+		// console.log(JSON.stringify(arr));
+		console.log(householdHead);
+		$.ajax({
+			type:'POST',
+			url:'http://localhost/ci_project/index.php/residents/res',
+			data: { arr: householdHead },
+			success: function(response){
+				console.log(response);
+			},
+			fail: function(error){
+				console.log(error);
+			},
+		})
 	});
 })(jQuery)
 
