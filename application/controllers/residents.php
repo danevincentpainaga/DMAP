@@ -23,6 +23,7 @@ class Residents extends CI_Controller {
 
 		// Load url helper
 		$this->load->helper('url');
+		$this->load->view('menu');
 	}
 	public function index()
 	{
@@ -41,5 +42,17 @@ class Residents extends CI_Controller {
 		$this->load->model('residents_model');
 		$q = $this->residents_model->add();
 		print_r($q);
+	}
+
+	public function getResidentId($id){
+		$this->load->model('residents_model');
+		$data['resident_data'] = $this->residents_model->update($id);
+		$this->load->view('updateResidents', $data );
+	}
+
+	public function updateResidents(){
+		$this->load->model('residents_model');
+		$updated = $this->residents_model->updateResidentData($this->input->post('res'));
+		echo $updated;
 	}
 }

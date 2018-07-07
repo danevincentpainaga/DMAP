@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Issuances extends CI_Controller {
+class users extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -26,9 +26,20 @@ class Issuances extends CI_Controller {
 	}
 	public function index()
 	{
-		$this->load->model("residents_model");
-		$data['residents'] = $this->residents_model->getResidents();
-		$this->load->view('form_issuances', $data );
+		$this->load->model('user_model');
+		$data['users'] = $this->user_model->getUsers();
+		$this->load->view('menu');
+		$this->load->view('users', $data );
 	}
-	
+	public function addUsers()
+	{
+		$this->load->view('menu');
+		$this->load->view('addUsers');
+	}
+
+	public function addNewUser(){
+		$this->load->model('user_model');
+		$res = $this->user_model->addUser();
+		echo $res;
+	}
 }

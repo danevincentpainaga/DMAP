@@ -103,13 +103,11 @@
 						        </tr>
 						      </thead>
 						      <tbody>
-						      	<?php for ($i=0; $i < 5; $i++) { 
-						      		# code...
-						      	 ?>
+						      	<?php foreach ($residents as $key => $value) { ?>
 						        <tr>
-						          <td>John Doe</td>
-						          <td>Jones</td>
-						          <td>Aguirre</td>
+						          <td><?php echo $value->lastname; ?></td>
+						          <td><?php echo $value->firstname; ?></td>
+						          <td><?php echo $value->middlename; ?></td>
 						          <td style="min-width: 270px; max-width: 270px;">
 						          	<button class="btn btn-outline-dark btn-sm">
 						          		<i class="fa fa-print"></i>&nbsp;Brgy Clearance
