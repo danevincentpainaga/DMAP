@@ -28,12 +28,12 @@ class users extends CI_Controller {
 	{
 		$this->load->model('user_model');
 		$data['users'] = $this->user_model->getUsers();
-		$this->load->view('menu');
+		$this->load->view('header');
 		$this->load->view('users', $data );
 	}
 	public function addUsers()
 	{
-		$this->load->view('menu');
+		$this->load->view('header');
 		$this->load->view('addUsers');
 	}
 
@@ -41,5 +41,24 @@ class users extends CI_Controller {
 		$this->load->model('user_model');
 		$res = $this->user_model->addUser();
 		echo $res;
+	}
+
+	public function updateUser($id){
+		$this->load->view('header');
+		$this->load->model('user_model');
+		$data['userDetails'] = $this->user_model->getUserDetails($id);
+		$this->load->view('updateUser', $data );
+	}
+
+	public function updateUserDetails(){
+		$this->load->model('user_model');
+		$message = $this->user_model->updateUser($this->input->post('updatedUser'));
+		echo $message;
+	}
+
+	public function deleteUser(){
+		$this->load->model('user_model');
+		$user = $this->user_model->deleteUserData($this->input->post('userId'));
+		echo $user;
 	}
 }

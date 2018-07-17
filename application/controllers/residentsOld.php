@@ -26,8 +26,6 @@ class Residents extends CI_Controller {
 	}
 	public function index()
 	{
-		$this->load->view('header');
-		$this->load->view('menu');
 		$this->load->model("residents_model");
 		$data['residents'] = $this->residents_model->getResidents();
 		$this->load->view('residents', $data );
@@ -36,8 +34,6 @@ class Residents extends CI_Controller {
 	
 	public function addResidents()
 	{
-		$this->load->view('header');
-		$this->load->view('menu');
 		$this->load->view('add_residents');
 	}
 
@@ -45,19 +41,5 @@ class Residents extends CI_Controller {
 		$this->load->model('residents_model');
 		$q = $this->residents_model->add();
 		print_r($q);
-	}
-
-	public function getResidentId($id){
-		$this->load->view('header');
-		$this->load->view('menu');
-		$this->load->model('residents_model');
-		$data['resident_data'] = $this->residents_model->update($id);
-		$this->load->view('updateResidents', $data );
-	}
-
-	public function updateResidents(){
-		$this->load->model('residents_model');
-		$updated = $this->residents_model->updateResidentData($this->input->post('res'));
-		echo $updated;
 	}
 }

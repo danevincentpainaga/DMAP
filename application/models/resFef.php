@@ -3,21 +3,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class residents_model extends CI_Model{
 
 	public function getResidents(){
-		// $query = $this->db->get('householdHead');
-		// $result = $query->result();
-		// $ids = array();
-		// foreach ($result as $key => $value) {
-		// 	$ids[] = $value->householdHead_id;//array('household_head_id' => $value->householdHead_id );
-		// }
-		// print_r($ids);
+		$arrayName = array();
+		$query = $this->db->get('householdHead');
+		$result = $query->result();
+		$ids = array();
+		foreach ($result as $key => $value) {
+			//$ids[] = $value->householdHead_id;//array('household_head_id' => $value->householdHead_id );
+			$this->db->select('*');
+			$this->db->from('residents');
+			$this->db->where('household_head_id', $value->householdHead_id);
+			// $this->db->join('residents', 'residents.household_head_id = householdHead.householdHead_id');
+			$this->db->join('status_tbl', 'status_tbl.status_id = residents.statusId');
+			$q = $this->db->get();
+			$arrayName[] = array('head' => $value, 'resd'=> $q->result());
+			// $r = $q->result();
+
+			// print_r(json_encode($q->result()));
+		}
+		return $arrayName;
+		// print_r(json_encode($arrayName));
+		// print_r($arrayName);
 		// $query = $this->db->get_where('residents', array('household_head_id' => 17 ) );
 		// print_r($query->result());
-		$this->db->select('*');
-		$this->db->from('householdHead');
-		$this->db->join('residents', 'residents.household_head_id = householdHead.householdHead_id');
-		$this->db->join('status_tbl', 'status_tbl.status_id = residents.statusId');
-		$query = $this->db->get();
-		return $query->result();
+		// $this->db->select('*');
+		// $this->db->from('householdHead');
+		// $this->db->where('household_head_id', 22);
+		// $this->db->join('residents', 'residents.household_head_id = householdHead.householdHead_id');
+		// $this->db->join('status_tbl', 'status_tbl.status_id = residents.statusId');
+		// $query = $this->db->get();
+		// return $query->result();
 		// return json_encode($query->result());
 	}
 

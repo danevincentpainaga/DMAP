@@ -22,7 +22,6 @@
 						          <th>Firstname</th>
 						          <th>Middle Name</th>
 						          <th>Maiden</th>
-						          <th>Household Head</th>
 						          <th>Relationship to Household Head</th>
 						          <th>Place of Birth</th>
 								  <th>Date of Birth</th>
@@ -31,6 +30,7 @@
 						          <th>Citizenship</th>
 						          <th>Occupation</th>
 						          <th>Educational Atainment</th>
+						          <th>Household Head</th>
 						          <th style="text-align: center;">Status</th>
 						          <th style="text-align: center;">Action</th>
 						        </tr>
@@ -39,35 +39,59 @@
 						      	<?php  
 						      		// echo json_encode($residents);
 						      		foreach ($residents as $key => $value) {
+						      			print_r($value);
 						      	 ?>
+						        <tr>
+						          <td><?php echo $value['head']->h_lastname; ?></td>
+						          <td><?php echo $value['head']->h_firstname; ?></td>
+						          <td><?php $value['head']->h_middlename; ?></td>
+		  				          <td><?php $value['head']->h_maiden; ?></td>
+						          <td><?php echo $value['head']->h_relation; ?></td>
+						          <td><?php echo $value['head']->h_placeofbirth; ?></td>
+						          <td><?php echo $value['head']->h_dateofbirth; ?></td>
+						          <td><?php echo $value['head']->h_sex; ?></td>
+						          <td><?php echo $value['head']->h_civilstatus; ?></td>
+		  				          <td><?php echo $value['head']->h_citizenship; ?></td>
+						          <td><?php echo $value['head']->h_occupation; ?></td>
+						          <td><?php echo $value['head']->h_educational_attainment; ?></td>
+						          <td>
+						          	Head
+						          </td>
+						          <td style="text-align: center; font-size: 14px !important; padding-top: 7px !important;">
+						          	
+						          </td>
+						          <td style="text-align: center;">
+						          					          </td>
+						        </tr>
+
 
 						        <tr>
-						          <td><?php echo $value->lastname; ?></td>
-						          <td><?php echo $value->firstname; ?></td>
-						          <td><?php echo $value->middlename; ?></td>
-		  				          <td><?php echo $value->maiden; ?></td>
+						          <td><?php echo $value['resd'][$key]->lastname; ?></td>
+						          <td><?php echo $value['resd'][$key]->firstname; ?></td>
+						          <td><?php echo $value['resd'][$key]->middlename; ?></td>
+		  				          <td><?php echo $value['resd'][$key]->maiden; ?></td>
+						          <td><?php echo $value['resd'][$key]->relation; ?></td>
+						          <td><?php echo $value['resd'][$key]->placeofbirth; ?></td>
+						          <td><?php echo $value['resd'][$key]->dateofbirth; ?></td>
+						          <td><?php echo $value['resd'][$key]->sex; ?></td>
+						          <td><?php echo $value['resd'][$key]->civilstatus; ?></td>
+		  				          <td><?php echo $value['resd'][$key]->citizenship; ?></td>
+						          <td><?php echo $value['resd'][$key]->occupation; ?></td>
+						          <td><?php echo $value['resd'][$key]->educational_attainment; ?></td>
 						          <td>
-						          	<?php echo $value->h_lastname; ?>
-						          	&nbsp;<?php echo $value->h_firstname; ?>
-						          	&nbsp;<?php echo $value->h_middlename; ?>
+						          	<?php echo $value['head']->h_lastname; ?>
+						          	&nbsp;<?php echo $value['head']->h_firstname; ?>
+						          	&nbsp;<?php echo $value['head']->h_middlename; ?>
 						          </td>
-						          <td><?php echo $value->relation; ?></td>
-						          <td><?php echo $value->placeofbirth; ?></td>
-						          <td><?php echo $value->dateofbirth; ?></td>
-						          <td><?php echo $value->sex; ?></td>
-						          <td><?php echo $value->civilstatus; ?></td>
-		  				          <td><?php echo $value->citizenship; ?></td>
-						          <td><?php echo $value->occupation; ?></td>
-						          <td><?php echo $value->educational_attainment; ?></td>
 						          <td style="text-align: center; font-size: 14px !important; padding-top: 7px !important;">
-						          	<?php if($value->status_id == 1){ ?>
-							          	<label class="status-active"><?php echo $value->status; ?></label>
+						          	<?php if($value['resd'][$key]->status_id == 1){ ?>
+							          	<label class="status-active"><?php echo $value['resd'][$key]->status; ?></label>
 						          	<?php }else{ ?>
-						          		<label class="status-inactive"><?php echo $value->status; ?></label>
+						          		<label class="status-inactive"><?php echo $value['resd'][$key]->status; ?></label>
 						          	<?php } ?>
 						          </td>
 						          <td style="text-align: center;">
-						          	<a href="<?php echo base_url() ?>index.php/residents/getResidentId/<?php  echo $value->resident_id ;?>" class="btn btn-outline-success btn-sm">
+						          	<a href="<?php echo base_url() ?>index.php/residents/getResidentId/<?php  echo $value['resd'][$key]->resident_id;?>" class="btn btn-outline-success btn-sm">
 						          		<i class="fa fa-edit"></i>&nbsp;Update
 						          	</a>
 						          	<button class="btn btn-outline-danger btn-sm">

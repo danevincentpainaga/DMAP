@@ -26,9 +26,40 @@ class Issuances extends CI_Controller {
 	}
 	public function index()
 	{
+		// $this->load->view('menu');
 		$this->load->model("residents_model");
 		$data['residents'] = $this->residents_model->getResidents();
+		$this->load->view('header');
 		$this->load->view('form_issuances', $data );
 	}
 	
+	public function print_live_in_certificate(){
+	    $this->load->library('pdfgenerator');
+			$data['users']=array(
+				array('firstname'=>'I am','lastname'=>'Programmer','email'=>'iam@programmer.com'),
+				array('firstname'=>'I am','lastname'=>'Designer','email'=>'iam@designer.com'),
+				array('firstname'=>'I am','lastname'=>'User','email'=>'iam@user.com'),
+				array('firstname'=>'I am','lastname'=>'Quality Assurance','email'=>'iam@qualityassurance.com')
+			);
+		$this->load->view('header');
+	    $html = $this->load->view('live_in_certificate', $data, true);
+	    // $filename = 'report_'.time();
+	    $filename = 'live_in_certificate';
+	    $this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
+	}
+
+	public function barangay_clearance(){
+	    $this->load->library('pdfgenerator');
+			$data['users']=array(
+				array('firstname'=>'I am','lastname'=>'Programmer','email'=>'iam@programmer.com'),
+				array('firstname'=>'I am','lastname'=>'Designer','email'=>'iam@designer.com'),
+				array('firstname'=>'I am','lastname'=>'User','email'=>'iam@user.com'),
+				array('firstname'=>'I am','lastname'=>'Quality Assurance','email'=>'iam@qualityassurance.com')
+			);
+		$this->load->view('header');
+	    $html = $this->load->view('barangay_clearance', $data, true);
+	    // $filename = 'report_'.time();
+	    $filename = 'live_in_certificate';
+	    $this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
+	}
 }

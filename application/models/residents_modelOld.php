@@ -3,31 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class residents_model extends CI_Model{
 
 	public function getResidents(){
-		// $query = $this->db->get('householdHead');
+		// $query = $this->db->get('residents');
 		// $result = $query->result();
-		// $ids = array();
-		// foreach ($result as $key => $value) {
-		// 	$ids[] = $value->householdHead_id;//array('household_head_id' => $value->householdHead_id );
-		// }
-		// print_r($ids);
-		// $query = $this->db->get_where('residents', array('household_head_id' => 17 ) );
-		// print_r($query->result());
+		// return $result;
 		$this->db->select('*');
 		$this->db->from('householdHead');
 		$this->db->join('residents', 'residents.household_head_id = householdHead.householdHead_id');
-		$this->db->join('status_tbl', 'status_tbl.status_id = residents.statusId');
+		$this->db->distinct();
 		$query = $this->db->get();
 		return $query->result();
 		// return json_encode($query->result());
-	}
-
-	public function update($id){
-		$this->db->select('*');
-		$this->db->from('residents');
-		$this->db->where('resident_id', $id);
-		$this->db->join('status_tbl', 'status_tbl.status_id = residents.statusId');
-		$query = $this->db->get();
-		return $query->result();
 	}
 
 	public function add(){
@@ -50,7 +35,6 @@ class residents_model extends CI_Model{
 
 			$this->db->insert('householdHead', $householdHead );
 			$id = $this->db->insert_id();
-			echo $id;
 			if($id > 0){
 				foreach ($this->input->post('arr')['rel'] as $key => $value) {
 					// $arr[] = $value;
@@ -68,25 +52,12 @@ class residents_model extends CI_Model{
 						'occupation' => $value['occupation'],
 						'educational_attainment' => $value['educational_attainment'],
 						'household_head_id' => $id,
-						'statusId' => 1,
 					);
 					$arr[] = $res;
 				}	
 				$this->db->insert_batch('residents', $arr );			
 			}
 			return $arr;//$arr;
-		}
-	}
-
-	public function updateResidentData($residentObj){
-		// $this->db->insert('householdHead', $householdHead );
-		// print_r($residentObj);
-		$this->db->where('resident_id', $residentObj['resident_id']);
-		$res = $this->db->update('residents', $residentObj); 
-		if($res > 0){
-			return 'Successfully Updated';	
-		}else{
-			return 'Failed!try again';
 		}
 	}	
 }

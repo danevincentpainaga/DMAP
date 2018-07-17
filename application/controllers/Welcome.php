@@ -18,8 +18,27 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	function __construct() {
+		parent::__construct();
+
+		// Load url helper
+		$this->load->helper('url');
+	}
 	public function index()
 	{
-		$this->load->view("welcome_message");
+		// $this->load->view('header');
+		// $this->load->view("index");
+    $this->load->library('pdfgenerator');
+		$data['users']=array(
+			array('firstname'=>'I am','lastname'=>'Programmer','email'=>'iam@programmer.com'),
+			array('firstname'=>'I am','lastname'=>'Designer','email'=>'iam@designer.com'),
+			array('firstname'=>'I am','lastname'=>'User','email'=>'iam@user.com'),
+			array('firstname'=>'I am','lastname'=>'Quality Assurance','email'=>'iam@qualityassurance.com')
+		);
+    $html = $this->load->view('live_in_certificate', $data, true);
+    $filename = 'report_'.time();
+    $this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
+
+
 	}
 }

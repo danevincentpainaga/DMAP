@@ -1,5 +1,4 @@
-<body>
-	<nav class="navbar navbar-expand-sm " style="height: 30px; background-color: #f2f2f2; ">
+<body><nav class="navbar navbar-expand-sm " style="height: 30px; background-color: #f2f2f2; ">
   <!-- Brand -->
   <!-- <a class="navbar-brand" href="#">Logo</a> -->
 
@@ -85,74 +84,92 @@
 				    	</a>
 				    </li>
 				  </ul>
-				  <br />
-				  <div class="row" >
-					  <div class="col-md-12">
-					  	  <div class="alert alert-success" id="message-holder">
-						    <label class="center" id="message"></label><strong>!</strong>
-						  </div>
-					  </div>			  	
+
+			<div class="row" style="margin-top: .9em;">
+				<div class="col-md-3"></div>
+				<div class="col-md-5">
+			  	  <div class="alert alert-success" id="message-holder" style="text-align: center;">
+				    <label class="center" id="message" ></label><strong>!</strong>
 				  </div>
+				</div>
+				<div class="col-md-3"></div>
+				<div class="col-md-1">
+			  	<a href="<?php echo base_url() ?>index.php/users" class="btn btn-info btn-sm" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);">
+			  		<i class="fa fa-arrow-circle-left"></i>&nbsp;Return
+			  	</a>			
+			  </div>
+			</div>
+				  <div class="card-body">
 				  	<div class="card" >
 					  <div class="card-body">
-					  	<h5>
-					  		<i class="fa fa-user-plus"></i>&nbsp;Add User
+					  	<h5 style="color:">
+					  		<i class="fa fa-user"></i>&nbsp;Update User
 					  	</h5>
 					  	<hr>
+					  	<?php foreach ($userDetails as $key => $value) { ?>
 					  	<div class="row" style="margin-top: .7em;">
 						  	<div class="col-md-4">
 						  		<label>Firstname:</label>
-						  		<input type="text" class="form-control form-control-sm" name="" id="firstname" placeholder="Enter firstname">
+						  		<input type="hidden" value="<?php echo $value->user_id; ?>" id="user-id" >
+						  		<input type="text" class="form-control form-control-sm" name="" id="firstname" placeholder="Enter firstname" value="<?php echo $value->firstname ?>">
 						  	</div>
 						  	<div class="col-md-4">
 						  		<label>Lastname:</label>
-						  		<input type="text" class="form-control form-control-sm" name="" id="lastname" placeholder="Enter lastname">
+						  		<input type="text" class="form-control form-control-sm" name="" id="lastname" placeholder="Enter lastname" value="<?php echo $value->lastname ?>">
 						  	</div>
 						  	<div class="col-md-4">
 						  		<label>Middle Name:</label>
-						  		<input type="text" class="form-control form-control-sm" name="" id="middlename" placeholder="Enter middle name">
+						  		<input type="text" class="form-control form-control-sm" name="" id="middlename" placeholder="Enter middle name" value="<?php echo $value->middlename ?>">
 						  	</div>
 						</div>
 						<br />
 						<div class="row">
 						  	<div class="col-md-4">
 						  		<label>Username</label>
-						  		<input type="text" class="form-control form-control-sm" name="" id="username" placeholder="Enter username">
+						  		<input type="text" class="form-control form-control-sm" name="" id="username" placeholder="Enter username" value="<?php echo $value->username ?>">
 						  	</div>
 						  	<div class="col-md-4">
 						  		<label>Password:</label>
-						  		<input type="text" class="form-control form-control-sm" name="" id="password" placeholder="Enter password">
+						  		<input type="text" class="form-control form-control-sm" name="" id="password" placeholder="Enter password" value="<?php echo $value->password ?>">
 						  	</div>
 						  	<div class="col-md-4">
-						  		<label>Confirm Password:</label>
-						  		<input type="text" class="form-control form-control-sm" name="" id="re_password" placeholder="Retype password">
+						  		<label>Status</label>
+						  		<select class="form-control form-control-sm" id="status">
+						  			<option value="<?php echo $value->statusId ?>"><?php echo $value->status ?></option>
+						  		<?php if($value->statusId == 1 ){ ?>
+						  			<option value="2" class="inactive-label">Inactive</option>
+						  		<?php }else{ ?>
+						  			<option value="1" class="active-label">Active</option>
+						  		<?php } ?>
+						  		</select>
 						  	</div>
+						  <?php } ?>
 						</div>
 						<br />
-				  </div>
-				  <br /> 
-				</div>
+					  </div>
+					</div>
 					<br />
 				  	<div class="card" >
 					  <div class="card-body" style="padding: 10px;">
 					  	<div class="row">
-						  	<div class="col-md-9">
-						  	</div>
-						  	<div class="col-md-3">
-						  		<button class="btn btn-success btn-sm" id="save-user" style="width: 110px;box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12)">
+						  	<div class="col-md-12">
+						  		<button class="btn btn-info btn-sm" id="update-user" style="width: 110px;box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12); float: right;">
 						  			<i class="fa fa-save"></i>&nbsp;Save
-						  		</button>
-						  		<button class="btn btn-info btn-sm" id="save-user" style="width: 110px;box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12)">
-						  			<i class="fa fa-ban"></i>&nbsp;Clear
 						  		</button>
 						  	</div>
 						</div>
 					  </div>
 					</div>
+					<br />
+				  </div>
+			</div>
+		</div>
+	</div>
 	<br />
 	<script type="text/javascript" src="<?php echo base_url() ?>public/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>public/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url() ?>public/bootstrap/dist/js/bootstrap.bundle.min.js">  </script>
 <script type="text/javascript">
+
 var e = {
 	val: function(element){
 		return $('#'+ element).val();
@@ -160,11 +177,11 @@ var e = {
 	id:function(element){
 		return $('#'+ element);
 	},
-	addUser:function(userObj, elementToShow, message){
+	updateUser:function(userObj, elementToShow, message){
 		$.ajax({
 			type:'POST',
-			url: 'http://localhost/DMAP/index.php/users/addNewUser',
-			data: { addedUser: userObj },
+			url: 'http://localhost/DMAP/index.php/users/updateUserDetails',
+			data: { updatedUser: userObj },
 			success: function(response){
 				console.log(response);
 				message.text(response);
@@ -181,18 +198,18 @@ var e = {
 
 	e.id('message-holder').hide();
 
-	e.id('save-user').on('click', function(){
-		var addedUserData = {
+	e.id('update-user').on('click', function(){
+		var updatedDetails = {
+			user_id: e.val('user-id'),
 			firstname: e.val('firstname'),
 			lastname: e.val('lastname'),
 			middlename: e.val('middlename'),
 			username: e.val('username'),
 			password: e.val('password'),
-			statusId: 1,
-			// re_password: e.val('re_password'),
+			statusId: e.val('status'),
 		};	
-		console.log(addedUserData);
-		e.addUser(addedUserData, e.id('message-holder'), e.id('message') );
+		console.log(updatedDetails);
+		e.updateUser(updatedDetails, e.id('message-holder'), e.id('message') );
 	});
 
 })(jQuery)

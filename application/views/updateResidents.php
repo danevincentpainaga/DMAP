@@ -1,29 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link type="text/css" rel="stylesheet" href="<?php echo base_url() ?>/public/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>public/components-font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>public/css/mainStyle.css">
-</head>
 <body>
 				  <br />
 				  <div class="row">
 					  <div class="col-md-11">
 					  	  <div class="alert alert-success" id="message-holder">
-						    <!-- <a href="" class="close" data-dismiss="alert" aria-label="close" id="close-holder">&times;</a> -->
 						    <label class="center" id="message"></label><strong>!</strong>
 						  </div>
 					  </div>
 					  <div class="col-md-1">
-					  	<a href="<?php echo base_url() ?>/index.php/residents" class="btn btn-outline-info btn-sm">
+					  	<a href="<?php echo base_url() ?>index.php/residents" class="btn btn-info btn-sm" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);">
 					  		<i class="fa fa-arrow-circle-left"></i>&nbsp;Return
 					  	</a>
 					  </div>				  	
 				  </div>
-				  <br />
+				  <div class="card-body">
+				  	<div class="card" >
+					  <div class="card-body">
+					  	<h5 style="color:">
+					  		<i class="fa fa-users"></i>&nbsp;Update Resident
+					  	</h5>
+					  	<hr>
 				  <?php foreach ($resident_data as $key => $value) {
-				  	// print_r($value);
 				  } ?>
 				  <div class="row">
 				  	<div class="col-md-3">
@@ -56,28 +52,53 @@
 				  	</div>
 				  	<div class="col-md-3">
 				  		<label>Sex:</label>
+
+
+
+
+
+				  		
 				  		<select class="form-control form-control-sm" id="sex">
-				  			<option value="<?php echo $value->sex ?>"><?php echo $value->sex ?></option>
-				  			<option value="female">female</option>
-				  		</select>
+				  			
+						  			<option value="male">male</option>
+						  			<option value="female">female</option>
+						  		
+				  			</select>
+				  	
+
+
+
+
+
+
+
 				  	</div>
 				  	<div class="col-md-3">
 				  		<label>Civil Status:</label>
 				  		<select class="form-control form-control-sm" id="civilstatus">
 				  			<option value="<?php echo $value->civilstatus ?>"><?php echo $value->civilstatus ?></option>
-				  			<option value="married">married</option>
+				  			<?php if($value->civilstatus == 'single' ){ ?>
+					  			<option value="married">married</option>
+					  			<option value="widowed">widowed</option>
+					  		<?php }else if($value->civilstatus == 'married'){ ?>
+					  			<option value="single">single</option>
+					  			<option value="widowed">widowed</option>
+					  		<?php }else{ ?>
+					  			<option value="single">single</option>
+					  			<option value="married">married</option>
+					  		<?php } ?>
 				  		</select>
 				  	</div>
 				  </div>
 				  <br />
 				  <div class="row">
 				  	<div class="col-md-3">
-				  		<label>citizenship:</label>
+				  		<label>Citizenship:</label>
 				  		<input type="text" name="" placeholder="citizenship" class="form-control form-control-sm" value="<?php echo $value->citizenship ?>" id="citizenship">
 				  	</div>
 				  	<div class="col-md-3">
 				  		<label>Occupation:</label>
-				  		<input type="text" name="" placeholder="occupation" class="form-control form-control-sm" value="<?php echo $value->occupation ?>" id="occupation
+				  		<input type="text" name="" placeholder="occupation" id="occupation" class="form-control form-control-sm" value="<?php echo $value->occupation ?>" id="occupation
 				  		">
 				  	</div>
 				  	<div class="col-md-3">
@@ -89,40 +110,54 @@
 				  		<select class="form-control form-control-sm" id="status">
 				  			<option value="<?php echo $value->statusId ?>"><?php echo $value->status ?></option>
 				  		<?php if($value->statusId == 1 ){ ?>
-				  			<option value="2">In-Active</option>
+				  			<option value="2">Inactive</option>
 				  		<?php }else{ ?>
 				  			<option value="1">Active</option>
 				  		<?php } ?>
 				  		</select>
 				  	</div>
 				  </div>
-				  <br />
-				  <div class="row">
-				  	<div class="col-md-12">
-				  		<button class="btn btn-outline-success btn-sm" id="update-resident">
-				  			<i class="fa fa-save"></i>&nbsp;SAVE
-				  		</button>
-				  	</div>
-				  </div> 
-
+			</div>
+		</div>
+		<br />
+		<div class="card" >
+		  <div class="card-body" style="padding: 10px;">
+		  	<div class="row">
+			  	<div class="col-md-12">
+			  		<button class="btn btn-outline-success btn-sm" id="update-resident" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12); width: 110px; float: right;">
+			  			<i class="fa fa-save"></i>&nbsp;SAVE
+			  		</button>
+			  	</div>
+			</div>
+		  </div>
+		</div>
+	</div>
 	<br />
 	<br />
 	<script type="text/javascript" src="<?php echo base_url() ?>public/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url() ?>public/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 	<script type="text/javascript">
+		var e = {
+			val: function(element){
+				return $('#'+ element).val();
+			},
+			id:function(element){
+				return $('#'+ element);
+			},
+		};
 		var services = {
-			updateResidentData: function(residentData, message_elem, message){
+			updateResidentData: function(residentData, elementToShow, message){
 				$.ajax({
 					type: 'POST',
-					url: 'http://localhost/ci_project/index.php/residents/updateResidents',
+					url: 'http://localhost/DMAP/index.php/residents/updateResidents',
 					data: { res: residentData },
 					success: function(response){
 						console.log(response);
-						message_elem.show();
 						message.text(response);
+						elementToShow.show();
 						setTimeout(function(){
-							message_elem.hide();
+							elementToShow.hide();
 						}, 3000 );
 					}
 				});
@@ -130,60 +165,29 @@
 		};
 
 		(function($){
-			var update = $('#update-resident');
-			var messageHolder = $('#message-holder');
-			var message = $('#message');
-			var close = $('#close-holder');
 
-			messageHolder.hide();
-			update.on('click', function(){
+			e.id('message-holder').hide();
+			
+			e.id('update-resident').on('click', function(){
 				var updatedData = {
-					resident_id: $('#resident-id').val(),
-					lastname: $('#lastname').val(),
-					firstname: $('#firstname').val(),
-					middlename: $('#middlename').val(),
-					maiden: $('#maiden').val(),
-					placeofbirth: $('#placeofbirth').val(),
-					dateofbirth: $('#dateofbirth').val(),
-					sex: $('#sex').val(),
-					civilstatus: $('#civilstatus').val(),
-					citizenship: $('#citizenship').val(),
-					occupation: $('#occupation').val(),
-					educational_attainment: $('#educational_attainment').val(),
-					StatusId: $('#status').val(),
+					resident_id: e.val('resident-id'),
+					lastname: e.val('lastname'),
+					firstname: e.val('firstname'),
+					middlename: e.val('middlename'),
+					maiden: e.val('maiden'),
+					placeofbirth: e.val('placeofbirth'),
+					dateofbirth: e.val('dateofbirth'),
+					sex: e.val('sex'),
+					civilstatus: e.val('civilstatus'),
+					citizenship: e.val('citizenship'),
+					occupation: e.val('occupation'),
+					educational_attainment: e.val('educational_attainment'),
+					StatusId: e.val('status'),
 				}
 				console.log(updatedData);
-				services.updateResidentData(updatedData, messageHolder, message);
+				services.updateResidentData(updatedData, e.id('message-holder'), e.id('message'));
 			});
-
-
-
 		})(jQuery);
 	</script>
 </body>
 </html>
-
-
-<!-- 
-						        <tr style="background-color: #e4f1ff;">
-						          <td><?php// echo $value->h_lastname; ?></td>
-						          <td><?php //echo $value->h_firstname; ?></td>
-						          <td><?php //echo $value->h_middlename; ?></td>
-		  				          <td><?php //echo $value->h_maiden; ?></td>
-						          <td><?php //echo $value->h_qualifier; ?></td>
-						          <td><?php// echo $value->h_placeofbirth; ?></td>
-						          <td><?php// echo $value->h_dateofbirth; ?></td>
-						          <td><?php //echo $value->h_sex; ?></td>
-						          <td><?php //echo $value->h_civilstatus; ?></td>
-		  				          <td><?php ///echo $value->h_citizenship; ?></td>
-						          <td><?php //echo $value->h_occupation; ?></td>
-						          <td><?php //echo $value->h_educational_attainment; ?></td>
-						          <td>
-						          	<button class="btn btn-outline-success btn-sm">
-						          		<i class="fa fa-edit"></i>Edit
-						          	</button>
-						          	<button class="btn btn-outline-danger btn-sm">
-						          		<i class="fa fa-times-circle"></i>Delete
-						          	</button>
-						          </td>
-						        </tr> -->

@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link type="text/css" rel="stylesheet" href="<?php echo base_url() ?>public/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>public/components-font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>public/css/mainStyle.css">
-</head>
 <body>
 				<div class="card" style="min-height: 630px; margin-top: .7em;">
 				  <div class="card-header">
 				  	<i class="fa fa-plus" style="color: #007bff;"></i>&nbsp;Add Residents
+	  		  		<button class="btn btn-light btn-sm" id="clear" style="width: 110px;box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12); float: right;">
+			  			<i class="fa fa-ban"></i>&nbsp;Clear
+			  		</button>
 				  </div>
 				  <div class="card-body">
 				  	<div class="card" >
@@ -49,14 +44,15 @@
 						  	</div>
 						  	<div class="col-md-4">
 						  		<select class="form-control form-control-sm" id="h_sex">
-						  			<option value="male">Male</option>
-						  			<option value="female">Female</option>
+						  			<option value="male">male</option>
+						  			<option value="female">female</option>
 						  		</select>
 						  	</div>
 						  	<div class="col-md-4">
 						  		<select class="form-control form-control-sm" id="h_civilstatus">
-						  			<option value="single">Single</option>
-						  			<option value="married">Married</option>
+						  			<option value="single">single</option>
+						  			<option value="married">married</option>
+						  			<option value="widowed">widowed</option>
 						  		</select>
 						  	</div>
 						</div>
@@ -129,8 +125,9 @@
 						          </td>
 						          <td style="min-width: 250px;">
 						          	<select class="form-control form-control-sm" id="civilstatus">
-						          		<option value="single">Single</option>
-						          		<option value="married">Married</option>
+							  			<option value="single">single</option>
+							  			<option value="married">married</option>
+							  			<option value="widowed">widowed</option>
 						          	</select>
 						          </td>
 						          <td style="min-width: 250px;"><input type="text" class="form-control form-control-sm" name="" id="citizenship"></td>
@@ -146,13 +143,13 @@
 					    </table>
 					    </div>
 				  </div> 
-				  <div class="card-footer" style="text-align: right;">Powered By: DMAP</div>
+				  <div class="card-footer" style="text-align: right;">Powered By: 4G</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<br />
-	<script type="text/javascript" src="http://localhost/ci_project/public/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url() ?>public/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url() ?>public/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 
@@ -184,6 +181,12 @@
 		          	'<button class="btn btn-danger btn-sm" id="remove" ><i class="fa fa-remove"></i></button>'+
 		          '</td>'+
 		        '</tr>',
+	};
+
+	var e = {
+		val: function(element){
+			return $('#'+ element).val();
+		},
 	};
 
 (function($){
@@ -242,7 +245,7 @@
 		console.log(householdHead);
 		$.ajax({
 			type:'POST',
-			url:'http://localhost/ci_project/index.php/residents/res',
+			url:'http://localhost/DMAP/index.php/residents/res',
 			data: { arr: householdHead },
 			success: function(response){
 				console.log(response);
